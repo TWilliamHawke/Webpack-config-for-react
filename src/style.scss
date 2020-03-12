@@ -1,0 +1,19 @@
+$headerColor: red;
+
+
+.container {
+  max-width: 1199px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: sans-serif;
+  color: $headerColor;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  background-image: url(./logo512.png);
+}
