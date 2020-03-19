@@ -131,6 +131,8 @@ module.exports = (env = {}) => {
       hot: true,
       overlay: true,
       clientLogLevel: 'warn',
+      historyApiFallback: true,
+      historyApiFallback: true,
       //hotOnly: true //optional
     }
 
