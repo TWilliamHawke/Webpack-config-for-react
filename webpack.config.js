@@ -4,7 +4,7 @@ const MiniCssPlugin = require('mini-css-extract-plugin')
 const OverlayPlugin = require('error-overlay-webpack-plugin')
 const Terser = require('terser-webpack-plugin')
 const OptimizeCss = require('optimize-css-assets-webpack-plugin')
-
+const path = require('path')
 
 module.exports = (env = {}) => {
   const isProd = env.mode === 'production'
@@ -12,11 +12,10 @@ module.exports = (env = {}) => {
 
   const getOptimization = () => {
     const settings = {
-      minimize: false
+      minimize: isProd
     }
 
     if(isProd) {
-      settings.minimize = true
       settings.minimizer = [
         new Terser(),
         new OptimizeCss()
@@ -96,7 +95,9 @@ module.exports = (env = {}) => {
     optimization: getOptimization(),
 
     output: {
-      filename: setFilename('js')
+      filename: setFilename('js'),
+      path: path.resolve(__dirname, "dist")
+
     },
 
     module: {
@@ -131,7 +132,6 @@ module.exports = (env = {}) => {
       hot: true,
       overlay: true,
       clientLogLevel: 'warn',
-      historyApiFallback: true,
       historyApiFallback: true,
       //hotOnly: true //optional
     }
