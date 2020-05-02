@@ -51,7 +51,7 @@ module.exports = (env = {}) => {
     return isProd ? `[name]-[hash:8].${ext}` : `[name].${ext}`
   }
 
-  const useFileLoader = outputPath => {
+  const getFileLoader = outputPath => {
     return {
       loader: 'file-loader',
       options: {
@@ -61,7 +61,7 @@ module.exports = (env = {}) => {
     }
   }
 
-  const useCssLoader = loader => {
+  const getCssLoader = loader => {
     const loaders = [
       isDev ? 'style-loader' : MiniCssPlugin.loader,
       'css-loader'
@@ -72,7 +72,7 @@ module.exports = (env = {}) => {
     return(loaders)
   }
 
-  const useBabel = () => {
+  const getBabel = () => {
     const settings = [
       {
         loader: 'babel-loader',
@@ -105,24 +105,24 @@ module.exports = (env = {}) => {
       rules: [
         {//styles
           test: /\.css$/,
-          use: useCssLoader()
+          use: getCssLoader()
         },
         {//sacc/cscc
           test: /\.s[ca]ss$/,
-          use: useCssLoader('sass-loader')
+          use: getCssLoader('sass-loader')
         },
         {//images
           test: /\.(jpg|png|swg|jpeg|gif|ico)$/,
-          use: useFileLoader('images')
+          use: getFileLoader('images')
         },
         {//fonts
           test: /\.(ttf|otf|eof|woff|woff2)$/,
-          use: useFileLoader("fonts")
+          use: getFileLoader("fonts")
         },
         {//javascript
           test: /\.js$/,
           exclude: /node_modules/,
-          use: useBabel()
+          use: getBabel()
         }
       ],
     },
@@ -134,6 +134,7 @@ module.exports = (env = {}) => {
       overlay: true,
       clientLogLevel: 'warn',
       historyApiFallback: true,
+      //proxy: { "/api/**": { target: "http://localhost:5000", secure: false } }, //fullstack only
       //hotOnly: true //optional
     }
 
