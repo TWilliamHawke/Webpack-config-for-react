@@ -134,7 +134,10 @@ module.exports = (env = {}) => {
       overlay: true,
       clientLogLevel: 'warn',
       historyApiFallback: true,
-      //proxy: { "/api/**": { target: "http://localhost:5000", secure: false } }, //fullstack only
+      // proxy: {  //fullstack only
+      //   "/api": { target: "http://localhost:5000", secure: false },
+      //   '/images': { target: 'http://localhost:5000', secure: false }
+      // },
       //hotOnly: true //optional
     }
 
