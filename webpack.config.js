@@ -69,7 +69,7 @@ module.exports = (env = {}) => {
 
     if(loader) loaders.push(loader)
 
-    return(loaders)
+    return loaders
   }
 
   const getBabel = () => {
