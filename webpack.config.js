@@ -83,6 +83,8 @@ module.exports = (env = {}) => {
       }
     ]
 
+    if(isDev) settings.push('eslint-loader')
+
     return settings
   }
 
@@ -99,6 +101,12 @@ module.exports = (env = {}) => {
       filename: setFilename('js'),
       path: path.resolve(__dirname, "dist")
 
+    },
+
+    resolve: {
+      alias: {
+        src: path.resolve(__dirname, 'src/')
+      }
     },
 
     module: {
