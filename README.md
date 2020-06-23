@@ -7,3 +7,5 @@
 - Jest
 - Enzyme
 - Eslint
+
+Работоспособность проверялась на NodeJS v14
