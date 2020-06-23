@@ -128,7 +128,7 @@ module.exports = (env = {}) => {
           use: getFileLoader("fonts")
         },
         {//javascript
-          test: /\.js$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: getBabel()
         }
